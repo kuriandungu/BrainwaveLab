@@ -1,0 +1,196 @@
+<!-- Added by claude-code on 10thAug2026 at 12:33pm GMT+3. purpose: BrainwaveLab V1 single-page UI per SPEC.md -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>BrainwaveLab</title>
+  <meta name="theme-color" content="#0b0e14">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>BrainwaveLab</h1>
+    <p class="tagline">True frequencies. Proven live.</p>
+  </header>
+
+  <main>
+    <!-- Transport -->
+    <section class="panel" id="transportPanel">
+      <button id="startStopBtn" class="big-btn">Start</button>
+      <div id="nowPlaying" class="now-playing">Stopped</div>
+      <div class="row">
+        <label for="timerSelect">Session timer</label>
+        <select id="timerSelect">
+          <option value="0">&infin; (no limit)</option>
+          <option value="15">15 min</option>
+          <option value="30">30 min</option>
+          <option value="60">60 min</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="masterVolume">Master volume</label>
+        <input type="range" id="masterVolume" min="0" max="1" step="0.01" value="0.6">
+      </div>
+    </section>
+
+    <!-- Mode toggle -->
+    <section class="panel" id="modePanel">
+      <div class="segmented" id="modeToggle">
+        <button id="modeBinauralBtn" class="seg-btn active" data-mode="binaural">Binaural</button>
+        <button id="modeIsochronicBtn" class="seg-btn" data-mode="isochronic">Isochronic</button>
+      </div>
+      <p id="modeBadge" class="badge badge-warn">Stereo headphones required &mdash; beats vanish if channels mix.</p>
+    </section>
+
+    <!-- Beat control -->
+    <section class="panel" id="beatPanel">
+      <h2>Beat frequency</h2>
+      <div class="row">
+        <input type="range" id="beatSlider" min="0.5" max="40" step="0.1" value="10">
+        <input type="number" id="beatNumber" min="0.5" max="40" step="0.1" value="10">
+        <span>Hz</span>
+      </div>
+      <span id="bandBadge" class="badge"></span>
+    </section>
+
+    <!-- Presets -->
+    <section class="panel" id="presetsPanel">
+      <h2>Presets — pick a state</h2>
+      <div class="presets-row">
+        <button class="preset-btn" data-beat="10" title="10 Hz alpha binaural: the one setting with EEG evidence of increased left-right hemisphere coherence (Sol&#224;-type studies). Use headphones, binaural mode.">Hemisphere Sync &alpha; 10 Hz</button>
+        <button class="preset-btn" data-beat="2" title="2 Hz delta: the dominant rhythm of deep (slow-wave) sleep. Use at low volume while falling asleep.">Deep Sleep &delta; 2 Hz</button>
+        <button class="preset-btn" data-beat="6" title="6 Hz theta: associated with deep meditation, drowsiness and hypnagogic imagery.">Meditation &theta; 6 Hz</button>
+        <button class="preset-btn" data-beat="7.5" title="7.5 Hz theta-alpha border: between frontal-midline theta (introspective meditation) and alpha (internally-directed attention). Conventional mapping for reflective states, not a directly proven outcome.">Reflection &theta;/&alpha; 7.5 Hz</button>
+        <button class="preset-btn" data-beat="15" title="15 Hz low-beta: an EEG study found 15 Hz beats helped sustain working memory under mental fatigue.">Anti-Fatigue &beta; 15 Hz</button>
+        <button class="preset-btn" data-beat="18" title="18 Hz beta: alert, engaged concentration for active work.">Focus &beta; 18 Hz</button>
+        <button class="preset-btn" data-beat="40" title="40 Hz gamma: the frequency used in memory/alertness research (e.g. MIT's 40 Hz sensory stimulation work).">Memory &gamma; 40 Hz</button>
+      </div>
+    </section>
+
+    <!-- Layers -->
+    <section class="panel" id="layersPanel">
+      <h2>Layers</h2>
+      <div class="layers-header">
+        <span></span><span>Carrier (Hz)</span><span>Gain</span>
+      </div>
+      <div id="layersList">
+        <!-- 7 rows, index 0-6, wired by app.js -->
+        <div class="layer-row" data-index="0">
+          <label><input type="checkbox" id="layerEnable0"> L1</label>
+          <input type="number" id="layerCarrier0" min="50" max="1000" step="0.1">
+          <input type="range" id="layerGain0" min="0" max="1" step="0.01">
+        </div>
+        <div class="layer-row" data-index="1">
+          <label><input type="checkbox" id="layerEnable1"> L2</label>
+          <input type="number" id="layerCarrier1" min="50" max="1000" step="0.1">
+          <input type="range" id="layerGain1" min="0" max="1" step="0.01">
+        </div>
+        <div class="layer-row" data-index="2">
+          <label><input type="checkbox" id="layerEnable2"> L3</label>
+          <input type="number" id="layerCarrier2" min="50" max="1000" step="0.1">
+          <input type="range" id="layerGain2" min="0" max="1" step="0.01">
+        </div>
+        <div class="layer-row" data-index="3">
+          <label><input type="checkbox" id="layerEnable3"> L4</label>
+          <input type="number" id="layerCarrier3" min="50" max="1000" step="0.1">
+          <input type="range" id="layerGain3" min="0" max="1" step="0.01">
+        </div>
+        <div class="layer-row" data-index="4">
+          <label><input type="checkbox" id="layerEnable4"> L5</label>
+          <input type="number" id="layerCarrier4" min="50" max="1000" step="0.1">
+          <input type="range" id="layerGain4" min="0" max="1" step="0.01">
+        </div>
+        <div class="layer-row" data-index="5">
+          <label><input type="checkbox" id="layerEnable5"> L6</label>
+          <input type="number" id="layerCarrier5" min="50" max="1000" step="0.1">
+          <input type="range" id="layerGain5" min="0" max="1" step="0.01">
+        </div>
+        <div class="layer-row" data-index="6">
+          <label><input type="checkbox" id="layerEnable6"> L7</label>
+          <input type="number" id="layerCarrier6" min="50" max="1000" step="0.1">
+          <input type="range" id="layerGain6" min="0" max="1" step="0.01">
+        </div>
+      </div>
+      <!-- Updated by Claude Sonnet (brief by Claude Fable 5) on 16Aug2026 at 1:22pm EAT. purpose:
+           Base Hz field — the tone the user wants to hear; the stack retunes so its nearest layer
+           lands exactly on it (ratios preserved, that layer highlighted and made loudest). -->
+      <div class="base-row">
+        <label for="baseHz">Base</label>
+        <input type="number" id="baseHz" min="50" max="1000" step="0.1" title="The tone you want to hear (e.g. 417, 528). The stack is retuned so its nearest layer sits exactly on this tone; the other layers keep their proportions. Any value 50–1000 Hz.">
+        <span>Hz</span>
+        <span id="baseHzHint" class="hint"></span>
+      </div>
+      <div class="presets-row">
+        <button id="septaStackBtn">Septa stack</button>
+        <button id="singleToneBtn">Single tone</button>
+        <button id="solfeggioBtn" title="The seven classic solfeggio pitches (396-963 Hz) as carriers. Folklore frequencies, honestly labeled - but here each pitch is measured live on the FFT instead of taken on faith.">Solfeggio stack</button>
+      </div>
+    </section>
+
+    <!-- Extras -->
+    <section class="panel" id="extrasPanel">
+      <h2>Extras</h2>
+      <div class="row">
+        <label><input type="checkbox" id="noiseEnable"> Noise bed</label>
+        <select id="noiseType" title="Pink: balanced hiss, gentle. Brown: deep rumble — the TikTok-famous 'brain went quiet' sound, popular for ADHD focus.">
+          <option value="pink">Pink</option>
+          <option value="brown">Brown</option>
+        </select>
+        <input type="range" id="noiseLevel" min="0" max="1" step="0.01" value="0.2">
+      </div>
+    </section>
+
+    <!-- Channel test -->
+    <section class="panel" id="testPanel">
+      <h2>Channel test</h2>
+      <div class="presets-row">
+        <button id="testLeftBtn">Test Left</button>
+        <button id="testRightBtn">Test Right</button>
+      </div>
+      <p class="hint">You should hear this ONLY in your left/right ear.</p>
+    </section>
+
+    <!-- Proof panel -->
+    <section class="panel" id="proofPanel">
+      <h2>Proof panel</h2>
+      <p id="sampleRateDisplay" class="hint"></p>
+      <div class="spectra-row">
+        <div class="spectrum-col">
+          <h3>Left</h3>
+          <canvas id="spectrumCanvasL" width="600" height="180"></canvas>
+        </div>
+        <div class="spectrum-col">
+          <h3>Right</h3>
+          <canvas id="spectrumCanvasR" width="600" height="180"></canvas>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table id="measurementTable">
+          <thead id="measurementTableHead"></thead>
+          <tbody id="measurementTableBody"></tbody>
+        </table>
+      </div>
+      <div id="beatReadout" class="beat-readout">
+        <span id="beatReadoutValue">10.0</span><span class="unit">Hz</span>
+        <span id="beatReadoutBand" class="band-name"></span>
+      </div>
+    </section>
+
+    <!-- Setup checklist -->
+    <details class="panel" id="checklistPanel">
+      <summary>Before you listen (setup checklist)</summary>
+      <ul>
+        <li>Use wired stereo headphones for binaural mode (Bluetooth codecs and speakers can mix channels).</li>
+        <li>Windows: Settings &rarr; Sound &rarr; device Properties &rarr; disable "Audio enhancements"; set Spatial sound to Off. These mix left/right and destroy binaural beats.</li>
+        <li>Keep volume comfortable-low; entrainment does not need loudness.</li>
+        <li>Not for use while driving; stop if you feel discomfort. Not a medical device.</li>
+      </ul>
+    </details>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

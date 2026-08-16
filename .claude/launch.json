@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "brainwavelab",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8763", "--directory", "C:/OneDrive/Personal/BrainwaveLab"],
+      "port": 8763
+    }
+  ]
+}

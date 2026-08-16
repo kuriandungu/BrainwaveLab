@@ -1,0 +1,9 @@
+<!-- Added by claude-code on 10thAug2026 at 12:33pm GMT+3. purpose: app icon, two overlapping sine
+     waves on a dark rounded square, per SPEC.md -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect x="0" y="0" width="512" height="512" rx="96" fill="#0b0e14"/>
+  <path d="M 32 288 Q 96 160 160 288 T 288 288 T 416 288 T 480 288"
+        fill="none" stroke="#5ce1e6" stroke-width="18" stroke-linecap="round"/>
+  <path d="M 32 224 Q 96 352 160 224 T 288 224 T 416 224 T 480 224"
+        fill="none" stroke="#7c5cff" stroke-width="18" stroke-linecap="round"/>
+</svg>

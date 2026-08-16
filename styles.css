@@ -1,0 +1,342 @@
+/* Added by claude-code on 10thAug2026 at 12:33pm GMT+3. purpose: dark theme, responsive styling for
+   BrainwaveLab V1 per SPEC.md */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0b0e14;
+  --panel-bg: #131826;
+  --border: #232b3d;
+  --text: #e6e9f0;
+  --text-dim: #9aa4b8;
+  --accent: #5ce1e6;
+  --accent-2: #7c5cff;
+  --warn: #ffd35c;
+  --danger: #ff5c5c;
+  --ok: #5cff8f;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.site-header {
+  text-align: center;
+  padding: 24px 16px 8px;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tagline {
+  margin: 4px 0 0;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 8px 16px 48px;
+}
+
+.panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.panel h2 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.panel h3 {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.row label {
+  min-width: 120px;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+input[type="range"] {
+  flex: 1;
+  min-width: 120px;
+}
+
+input[type="number"] {
+  width: 70px;
+  min-width: 0;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px;
+}
+
+select {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px;
+}
+
+button {
+  background: var(--panel-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+.big-btn {
+  display: block;
+  width: 100%;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 16px;
+  margin-bottom: 14px;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  color: #0b0e14;
+  border: none;
+}
+
+.big-btn.running {
+  background: linear-gradient(90deg, var(--danger), var(--warn));
+}
+
+.now-playing {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text);
+  margin: -6px 0 14px;
+}
+
+.now-playing.idle {
+  color: var(--text-dim);
+}
+
+.segmented {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.seg-btn {
+  flex: 1;
+}
+
+.seg-btn.active {
+  background: var(--accent);
+  color: #0b0e14;
+  border-color: var(--accent);
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.badge-warn {
+  color: var(--warn);
+  border-color: var(--warn);
+}
+
+.presets-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.layers-header {
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr;
+  gap: 8px;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  padding: 0 2px 4px;
+}
+
+.layer-row {
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 2px;
+  border-top: 1px solid var(--border);
+}
+
+.layer-row label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.layer-row input[type="number"] {
+  width: 100%;
+}
+
+/* Added by Claude Sonnet (brief by Claude Fable 5) on 16Aug2026 at 1:22pm EAT. purpose: highlight
+   the anchor row — the layer retuned to play the Base Hz tone exactly. */
+.layer-row.anchor { border-left: 3px solid var(--accent); padding-left: 6px; }
+.layer-row.anchor label { color: var(--accent); font-weight: 600; }
+
+/* Added by Claude Sonnet (brief by Claude Fable 5) on 16Aug2026 at 1:05pm EAT. purpose: Base Hz
+   field styling — sits above the stack preset buttons in the Layers panel. */
+.base-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 10px 0 6px; font-size: 0.9rem; }
+.base-row input[type="number"] { width: 90px; }
+.base-row .hint { margin: 0; }
+
+.hint {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin: 4px 0 0;
+}
+
+.spectra-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.spectrum-col {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+canvas {
+  width: 100%;
+  height: auto;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: block;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 480px;
+  font-size: 0.85rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.ok-mark {
+  color: var(--ok);
+}
+
+.no-mark {
+  color: var(--text-dim);
+}
+
+.beat-readout {
+  text-align: center;
+  padding: 10px 0 0;
+}
+
+#beatReadoutValue {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.unit {
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin-left: 4px;
+}
+
+.band-name {
+  display: block;
+  font-size: 1rem;
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+details.panel summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+details.panel ul {
+  margin: 10px 0 0;
+  padding-left: 20px;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+  .site-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .row label {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .layers-header,
+  .layer-row {
+    grid-template-columns: 60px 1fr 1fr;
+    gap: 4px;
+  }
+
+  .layer-row input[type="number"] {
+    width: 100%;
+    padding: 4px;
+  }
+}
