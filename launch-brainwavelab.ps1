@@ -2,7 +2,7 @@
 # starts the local static server if not already listening, then opens the app in an
 # Edge app-window (falls back to default browser).
 $port = 8763
-$root = 'C:\OneDrive\Personal\BrainwaveLab'
+$root = $PSScriptRoot  # the folder this script lives in (repo root)
 $url  = "http://localhost:$port"
 
 $listening = $null
