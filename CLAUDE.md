@@ -3,7 +3,7 @@
 A brainwave-entrainment audio app (binaural beats + isochronic tones) whose core product promise is
 **provably correct frequencies** — real-time synthesis, no pre-rendered audio, live FFT proof panel.
 
-Owner: Kuria. Platforms: Windows (browser/PWA) now, Android (installable PWA) next.
+Platforms: Windows (browser/PWA) now, Android (installable PWA) next.
 
 ## Conventions
 
