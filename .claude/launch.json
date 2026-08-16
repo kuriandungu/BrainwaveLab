@@ -4,7 +4,7 @@
     {
       "name": "brainwavelab",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8763", "--directory", "C:/OneDrive/Personal/BrainwaveLab"],
+      "runtimeArgs": ["-m", "http.server", "8763", "--directory", "."],
       "port": 8763
     }
   ]
